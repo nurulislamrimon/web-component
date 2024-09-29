@@ -1,6 +1,9 @@
-const template = document.createElement("template");
-template.innerHTML = `
-<style></style>
+const template = `
+<style>
+div label{
+background-color:red;
+}
+</style>
 <div>
 <label type="checkbox">
     <input type="checkbox" value="What"/>
@@ -16,11 +19,11 @@ class MyCustomClass extends HTMLElement {
   }
 
   connectedCallback() {
-    this.shadow = this.attachShadow({ mode: "open" });
-    this.shadow.append(template.content.cloneNode(true));
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.innerHTML = template;
   }
 
   attributeChangedCallback() {}
 }
 
-customElements?.define("ni-rimon", MyCustomClass);
+customElements.define("ni-rimon", MyCustomClass);
